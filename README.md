@@ -9,16 +9,16 @@ Model built to predict the price of an item based on parameters parsed from a we
 
 # Plan
 1. Scraping: two solutions came to mind:
-- BeautifulSoup: simpler interface, less functionality, more suitable for limited time
-- Scrapy: more advanced tool for scraping, provides greater functionality. Might have to look for my previous codes for them, if data is hard to parse.
+  - BeautifulSoup: simpler interface, less functionality, more suitable for limited time
+  - Scrapy: more advanced tool for scraping, provides greater functionality. Might have to look for my previous codes for them, if data is hard to parse.
 2. Feature engineering: based on data, one should
-- Encode
-- Normalize
-- Derive new ones
+  - Encode
+  - Normalize
+  - Derive new ones
 3. Modeling: regression task. Models I used before in similar scenarios:
-- (Linear) regression
-- SVM-regressor
-- XGBRegressor
+  - (Linear) regression
+  - SVM-regressor
+  - XGBRegressor
 4. Deploy: closest I used so far is Streamlit.io
 
 For both 2. and 3. one should do an EDA as well, which could be put on a dashboard in streamlit.
@@ -28,9 +28,9 @@ I got 3x2 hours. For each task that is ~1-2 hours depending on my experience and
 
 # Further developments
 1. Scraping
-- Scrapy: could collect more data by opening product page (has experience with them but would take up more time to freshen them)
+  - Scrapy: could collect more data by opening product page (has experience with them but would take up more time to freshen them)
 2. Feature engineering
 3. Modeling
-- Explain model better 
+  - Explain model better 
 4. Deploy
-- Dashboard: interactive charts could be made by Plotly for instance (has experience with them but would take up more time to freshen them)
+  - Dashboard: interactive charts could be made by Plotly for instance (has experience with them but would take up more time to freshen them)
