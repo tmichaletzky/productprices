@@ -25,3 +25,12 @@ For both 2. and 3. one should do an EDA as well, which could be put on a dashboa
 
 # Timing
 I got 3x2 hours. For each task that is ~1-2 hours depending on my experience and unforeseen challenges. Although I am more experienced in tasks 2 and 3, 1 is crucial to have, so I am planning to spend more time on these.
+
+# Further developments
+1. Scraping
+- Scrapy: could collect more data by opening product page (has experience with them but would take up more time to freshen them)
+2. Feature engineering
+3. Modeling
+- Explain model better 
+4. Deploy
+- Dashboard: interactive charts could be made by Plotly for instance (has experience with them but would take up more time to freshen them)
