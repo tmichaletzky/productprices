@@ -24,13 +24,19 @@ class MySpider(scrapy.Spider):
             yield scrapy.Request(response.urljoin(next_page))
 
     def productParser(self, response):
-        properties = response.xpath("//dd[@class='property-group__name']").getall()
-        properties = map(lambda s: re.findall('property-group__name">\n(.*) </dt>', s), properties)
+        properties = response.xpath("//dt[@class='property-group__name']").getall()
+        properties = list(map(
+            lambda s: re.findall('property-group__name">\n(.*) </dt>', s)[0],
+            properties
+        ))
         values = response.xpath("//dd[@class='property-group__values']").getall()
-        values = map(lambda s: re.findall('property-group__values">\n(.*) </dt>', s), values)
+        values = list(map(
+            lambda s: re.findall('property-group__values">\n<span class="value">(.*)</span>', s)[0],
+            values
+        ))
         retval = {}
         for key,value in zip(properties, values):
             retval[key] = value
-        yield retval
+        return retval
 
 
