@@ -27,11 +27,14 @@ For both 2. and 3. one should do an EDA as well, which could be put on a dashboa
 I got 3x2 hours. For each task that is ~1-2 hours depending on my experience and unforeseen challenges. Although I am more experienced in tasks 2 and 3, 1 is crucial to have, so I am planning to spend more time on these.
 
 # Report
-1. Preparations
+0. Preparations
 - Create github repo and clone to personal computer (had to be set up as well)
 - Search for proper website: most does not have enough information on their main page which calls for Scrapy, tho that is time consuming
 - Look for previous Scrapy project
 - Decide platform to deploy and dashboard: streamlit
+
+# Sources
+1. Scraper 
 
 
 # Further developments
