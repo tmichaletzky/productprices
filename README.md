@@ -38,6 +38,7 @@ I got 3x2 hours. For each task that is ~1-2 hours depending on my experience and
 - https://docs.scrapy.org/en/latest/index.html
 - https://www.scrapingbee.com/blog/web-scraping-with-scrapy/
 - https://scrapeops.io/python-scrapy-playbook/python-scrapy-amazon-product-scraper/
+- https://www.w3schools.com/xml/xpath_syntax.asp
 
 
 # Further developments
