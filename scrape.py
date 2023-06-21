@@ -61,7 +61,7 @@ if __name__ == "__main__":
         'USER_AGENT': 'Mozilla/5.0',
         'DOWNLOAD_DELAY': 1,
         'FEED_FORMAT': 'json',
-        'FEED_URI': '../data/products.json',
+        'FEED_URI': 'data/products_.json',
     })
 
     c.crawl(MySpider)
