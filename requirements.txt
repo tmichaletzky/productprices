@@ -1,4 +1,3 @@
-re
 json
 numpy
 pandas
@@ -8,4 +7,3 @@ xgboost
 scrapy
 seaborn
 streamlit
-
