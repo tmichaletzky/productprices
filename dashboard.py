@@ -3,14 +3,24 @@ import numpy as np
 import pandas as pd
 from xgboost import XGBRegressor
 
-from utils import *
-from preprocess import PreProcessor
+st.title("Task: Build a regression model to predict product prices")
 
-st.title("DMLab task: Build a regression model to predict product prices")
+
+###############
+st.header("Specify product")
 
 features = pd.read_csv("data/basetable.csv").columns
 
-st.header("Specify product")
+# from Preprocessing.ipynb
+float_cols = ["display_size",  "dim_height","dim_width","dim_depth","dim_weight"]
+int_cols = ["num_usb","num_hdmi"]
+binary_cols = ["smart","usb","wifi"]
+label_encoder = { 
+    "display_type": ["TN", "LCD", "LED", "OLED", "QLED", "NANOCELL", "QNED"][::-1], # best to worst
+    "energyclass": ["A","B","C","D","E","F","G"], # best to worst
+    "display_resolution": ["HD", "Full HD", "4K", "8K"][::-1], # best to worst [720,1080,2160,4320]
+    "dim_color": ["Fehér","Ezüst","Szürke","Bézs","Korall","Kék","Fekete"], # brightest to darkest
+}
 
 
 item = {}
@@ -34,19 +44,20 @@ for prop in features:
     elif prop in binary_cols:
         has = st.checkbox(f'Has {prop} or not (check box if yes):', value=0)
         if has:
-            value = "Igen"
+            value = 1
         else:
-            value = "Nem"
+            value = 0
     elif prop in label_encoder:
         value = st.selectbox(f'Add {prop}: ', ["Don't know"] + label_encoder[prop], index=0)
         if value == "Don't know":
             value = None
+        else:
+            value = label_encoder[prop].index(value)
     
     if value: # not None
         item[prop] = value
             
     
-
 product = st.text_input("Product name (or just the company):")
 item["product"] = product
 
@@ -58,39 +69,17 @@ item["price"] = price
 st.subheader("Your product:")
 st.write(item)
 
-        
-def product(item):
-    global COLUMNS
-    preprocessor = PreProcessor()
-    # get columns
-    # get my features
-    feature = item.copy()
-    preprocessor.label_encode(item,feature)
-    preprocessor.binary_encode(item,feature)
-    preprocessor.onehot_encode(item,feature)
-    preprocessor.derive(feature)
-    feature["price"] = float(item["price"])
-    for key in COLUMNS:
-        if key not in feature:
-            feature[key] = np.nan    
-    drop = []
-    for key in feature:
-        if key not in COLUMNS:
-            drop.append(key)
-    for key in drop:
-        feature.pop(key)
-    return feature
-
-COLUMNS = pd.read_csv("data/basetable.csv").columns
-
-values = product(item)
-
 ######################
 st.subheader("Features:")
 
-values.pop("serial_id")
-values.pop("price")
-line = pd.DataFrame(values, index=[0], columns=COLUMNS, dtype=float)
+for feat in features:
+    if feat not in item:
+        item[feat] = np.nan
+
+item.pop("serial_id")
+item.pop("price")
+
+line = pd.DataFrame(item, index=[0], columns=features, dtype=float)
 st.write(line)
 
 
