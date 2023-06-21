@@ -4,7 +4,7 @@ import pandas as pd
 from xgboost import XGBRegressor
 
 from utils import *
-from preprocess_api import PreProcessor
+from preprocess import PreProcessor
 
 st.title("DMLab task: Build a regression model to predict product prices")
 

@@ -124,4 +124,4 @@ if __name__ == "__main__":
     table = pd.DataFrame.from_records(records)
     print(table.columns)
     print(table.head())
-    table.to_csv("testtable.csv", index=False)
+    table.to_csv("data/basetable.csv", index=False)
