@@ -1,6 +1,18 @@
 # productprices
 Model built to predict the price of an item based on parameters parsed from a webshop.
 
+# Run
+To scrape TV's from euronics.hu to `data/products.json`:
+```
+python scrape.py
+```
+`Preprocess.ipnyb` can be run for preprocessing, `Modeling.ipynb` can be run for regression.
+
+To launch streamlit application:
+```
+streamlit run dashboard.py
+```
+
 # Task
 1. Scrape data from a webstore.
 2. Create features.
@@ -26,24 +38,9 @@ For both 2. and 3. one should do an EDA as well, which could be put on a dashboa
 # Timing
 I got 3x2 hours. For each task that is ~1-2 hours depending on my experience and unforeseen challenges. Although I am more experienced in tasks 2 and 3, 1 is crucial to have, so I am planning to spend more time on these.
 
-# Report
-0. Preparations
-- Create github repo and clone to personal computer (had to be set up as well)
-- Search for proper website: most does not have enough information on their main page which calls for Scrapy, tho that is time consuming
-- Look for previous Scrapy project
-- Decide platform to deploy and dashboard: streamlit
-
-# Sources
-1. Scraper 
-- https://docs.scrapy.org/en/latest/index.html
-- https://www.scrapingbee.com/blog/web-scraping-with-scrapy/
-- https://scrapeops.io/python-scrapy-playbook/python-scrapy-amazon-product-scraper/
-- https://www.w3schools.com/xml/xpath_syntax.asp
-
-
 # Further developments
 1. Scraping
-  - Scrapy: could collect more data by opening product page (has experience with them but would take up more time to freshen them)
+  - Scrapy: could collect cleaner data by correct xpath
 2. Feature engineering
 3. Modeling
   - Explain model better 
