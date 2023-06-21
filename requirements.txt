@@ -1,6 +1,11 @@
+re
+json
 numpy
 pandas
 matplotlib
 scikit-learn
 xgboost
+scrapy
+seaborn
+streamlit
 
