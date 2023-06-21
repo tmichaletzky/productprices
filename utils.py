@@ -74,7 +74,7 @@ def pixel_ready(record):
     return True
 
 def energy_ready(record):
-    for prop in ["dispay_resolution","energyclass"]:
+    for prop in ["display_resolution","energyclass"]:
         if prop not in record:
             return False
     return True
@@ -90,4 +90,3 @@ res2pixs = {
 def resolution2pixel(code):
     tech = label_encoder["display_resolution"][-code-1]
     return res2pixs[tech]
-

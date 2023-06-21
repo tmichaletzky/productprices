@@ -1,12 +1,13 @@
 import json
-from collections import Counter
-
 import warnings
+import pandas as pd
+
+from collections import Counter
 from utils import *
 
 class PreProcessor():
-    def __init__(self,fdata):
-        self.stream = json.load(open(fdata))
+    def __init__(self):
+        pass
         
     def read(self):
         parsed_keys = Counter()
@@ -14,10 +15,11 @@ class PreProcessor():
             parsed_keys.update(item.keys())
         return parsed_keys
     
-    def parse(self):
+    def parse(self,fdata):
         global translate_dict
+        stream = json.load(open(fdata))
         records = []
-        for item in self.stream:
+        for item in stream:
             record = {}
             for key in item:
                 if key.strip() in translate_dict:
@@ -81,7 +83,8 @@ class PreProcessor():
         }
         if "product" in record:
             company = record["product"].split(" ")[0].lower()
-            onehot_dict[f"is_company_{company}"] = 1
+            if company in companies:
+                onehot_dict[f"is_company_{company}"] = 1
         values.update(onehot_dict)
     
     def encode(self,record):
@@ -104,20 +107,21 @@ class PreProcessor():
             feature["display_relativeenergy"] = resolution2pixel(feature["display_resolution"]) / 1000
             feature["display_relativeenergy"] /= feature["energyclass"] + 1 # the bigger the less power consumption
             
-    def preprocess(self):
-        records = self.parse()
+    def preprocess(self,fdata):
+        records = self.parse(fdata)
         features = []
         for record in records:
             feature = self.encode(record)
             self.derive(feature)
+            feature["price"] = float(record["price"])
+            feature["serial_id"] = int(record["serialnumber"])
             features.append(feature)
         return features
-        
-    def product(self,item):
-        feature = item.copy()
-        self.label_encode(item,feature)
-        self.binary_encode(item,feature)
-        self.onehot_encode(item,feature)
-        self.derive(feature)
-        return feature
-        
+    
+if __name__ == "__main__":
+    preprocessor = PreProcessor()
+    records = preprocessor.preprocess("crawler/products.json")
+    table = pd.DataFrame.from_records(records)
+    print(table.columns)
+    print(table.head())
+    table.to_csv("testtable.csv", index=False)
